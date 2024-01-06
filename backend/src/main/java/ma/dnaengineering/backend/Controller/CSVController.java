@@ -6,16 +6,18 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import ma.dnaengineering.backend.Entities.Employee;
 import ma.dnaengineering.backend.Service.CSVParserService;
 import ma.dnaengineering.backend.Service.EmployeeService;
 
 
-@Controller
+@RestController
+@RequestMapping("/api/employees")
 public class CSVController {
 
 @Autowired
@@ -38,12 +40,13 @@ public ResponseEntity<List<Employee>> parceCSV(@RequestParam String filePath) th
         return ResponseEntity.status(500).build();
     }
 
+    
 }
 
 @GetMapping("/employee-summary")
 public ResponseEntity<Map<String,Double>> getEmployeeSummary(@RequestParam String filePath) throws IOException{
     try {
-        
+
         List<Employee> employees=csvParserService.readCSV(filePath);
         Map<String,Double> summary=employeeService.calculateAverageSlaryByJobTitle(employees);
         return ResponseEntity.ok(summary);
