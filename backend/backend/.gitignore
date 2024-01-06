@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -14,8 +13,6 @@ target/
 .springBeans
 .sts4-cache
 
-=======
->>>>>>> origin/main
 ### IntelliJ IDEA ###
 .idea
 *.iws
