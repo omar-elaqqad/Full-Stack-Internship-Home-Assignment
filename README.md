@@ -82,7 +82,7 @@ Respect the following design flow:
 -  nagivate to the frontend folder and run the frontend with the command 'npm run dev'
 -  The frontend will run on "http://localhost:3000"
 -  Access "http://localhost:3000/upload" to go to the file upload page.
--  Upload the CSV file avaible on `static/employees.csv` using the "Upload" button.
+-  Upload the CSV file avaible on `data/employees.csv` using the "Upload" button.
 -  after a  successful upload an alert will be displayed.
 -  Click on the "Process" button to navigate to the process page.
 -  The process page (http://localhost:3000/process) will show the employee data table and job summary table.
