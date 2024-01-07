@@ -3,10 +3,15 @@ import Employees from "@/components/Employees";
 
 const Process =()=>{
 
+  const currentPage = 1;
+  const pageSize = 10;
+
+
+
     return (
 
     <div>
-      <Employees />
+      <Employees currentPage={currentPage} pageSize={pageSize} />
     </div>
 
     );

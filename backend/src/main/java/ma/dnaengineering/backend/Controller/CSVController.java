@@ -31,7 +31,7 @@ private EmployeeService employeeService;
 
 @PostMapping("/upload")
 
-public   ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file){
+public   ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) throws IOException{
 
     try {
 
@@ -47,7 +47,6 @@ public   ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile f
 
 
 }
-
 
 @GetMapping("/getJobSummary")
 public ResponseEntity<Map<String,Double>> getEmployeeSummary(@RequestParam int page, @RequestParam int pageSize) {

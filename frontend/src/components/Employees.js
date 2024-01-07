@@ -2,17 +2,22 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 
-const Employees = () =>{
+const Employees = (currentPage, pageSize) =>{
 
     const [employeelist,setemoloyeelist]=useState([]);
     const [jobSummary , setJobSummary]=useState([]);
+    const [totalPages, setTotalPages] = useState(1);
 
-    const fetchEmployees=async(page, pageSize)=>{
+
+    useEffect(() =>{
+
+      const fetchEmployees=async()=>{
 
         try {
             
             const response=await axios.get('http://localhost:9093/api/employees/getEmployees?page=${page}&pageSize=${pageSize}');
             setemoloyeelist(response.data);
+            setTotalPages(response.headers[x-total-pages]);
 
         } catch (error) {
 
@@ -21,7 +26,7 @@ const Employees = () =>{
         }
     };
 
-    const fetchJobSummary=async(page, pageSize)=>{
+    const fetchJobSummary=async()=>{
 
         try {
             
@@ -34,12 +39,13 @@ const Employees = () =>{
             
         }
     };
-    
-    useEffect(() =>{
-        fetchEmployees(0,5);
-        fetchJobSummary(0,5);
 
-    },[]);
+
+    fetchEmployees();
+    fetchJobSummary();
+
+    },[currentPage,pageSize]);
+
 
     return(
 
@@ -64,6 +70,14 @@ const Employees = () =>{
           ))}
         </tbody>
       </table>
+
+      <div>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button key={index} onClick={() => handlePageChange(index + 1)}>
+            {index + 1}
+          </button>
+        ))}
+      </div>
 
 
       <h2>Job Summary</h2>
