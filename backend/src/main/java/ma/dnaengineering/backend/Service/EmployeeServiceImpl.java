@@ -1,17 +1,17 @@
 package ma.dnaengineering.backend.Service;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.mysql.cj.xdevapi.Collection;
 
 import ma.dnaengineering.backend.Entities.Employee;
 
@@ -21,25 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private List<Employee> employees=new ArrayList<>();
 
-    @Override
-    public List<Employee> getEmployees(int page, int pageSize) {
 
-        int startIndex =page*pageSize;
-        int endIndex =Math.min(startIndex+pageSize,employees.size());
-
-
-        if(startIndex>=endIndex || startIndex<0 || endIndex<0){
-            return Collection.emptyList();
-        }
-        return null;
-        
-    }
-
-    @Override
-    public Map<String, Double> calculateAverageSlaryByJobTitle() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calculateAverageSlaryByJobTitle'");
-    }
 
     @Override
     public void readCSV(InputStream inputStream) {
@@ -80,6 +62,52 @@ public class EmployeeServiceImpl implements EmployeeService {
             e.printStackTrace();
         }
         
+    }
+
+
+     @Override
+    public List<Employee> getEmployees(int page, int pageSize) {
+
+        int startIndex =page*pageSize;
+        int endIndex =Math.min(startIndex+pageSize,employees.size());
+
+
+        if(startIndex>=endIndex || startIndex<0 || endIndex<0){
+            return Collections.emptyList();
+
+        }
+
+        return employees.subList(startIndex, endIndex);
+        
+    }
+
+    @Override
+    public Map<String, Double> calculateAverageSlaryByJobTitle(int page, int pageSize) {
+
+         int startIndex =page*pageSize;
+        int endIndex =Math.min(startIndex+pageSize,employees.size());
+
+
+        if(startIndex>=endIndex || startIndex<0 || endIndex<0){
+            return Collections.emptyMap();
+
+        }
+
+        Map<String, Double> summary=new HashMap<>();
+
+        for(int i=startIndex;i<endIndex;i++){
+
+            Employee employee=employees.get(i);
+            String jobTitle=employee.getJob_title();
+            double salary=employee.getSalary();
+
+
+            summary.merge(jobTitle, salary, Double::sum);
+
+        }
+        summary.replaceAll((key,value)-> value/pageSize);
+       
+        throw new UnsupportedOperationException("Unimplemented method 'calculateAverageSlaryByJobTitle'");
     }
 
     
