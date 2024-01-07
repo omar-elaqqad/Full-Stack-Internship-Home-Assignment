@@ -7,6 +7,7 @@ Build a CSV Parser.
 - [Assignment](#assignment)
 - [What we expect](#what-we-expect)
 - [Bonus points](#bonus-points)
+- [My Approach](#my-approach)
 
 ## Prerequisites
 - Java 17
@@ -60,3 +61,26 @@ Respect the following design flow:
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
 - Use design patterns.
+### My Approach
+## Backend:
+- verified the necessary dependencies for spring.
+- Created a service (EmployeeService) with the anotation @Service to read and process the Employee CSV file.
+- Implemented controller endpoints to handle file uploads (/api/employees/upload), retrieve employees (/api/employees//getEmployees), , and job summaries  (/api/employees/upload/getJobSummary) with the anotation @RestController.
+- Enabled CORS using the @CrossOrigin annotation in the controller to allow cross-origin requests from the frontend.
+## Frontend
+- installing the necessary packages such as axios.
+- Created a FileUpload Component (FileUploader.js) to handle file uploads and i used axios to make requests to the backend.
+- Created an Upload Page (pages/upload) that uses the FileUploader component and Displayed an alert when a file is uploaded.
+- Created an Employees Component (Employees.js) to display employee data and average salary per job title in a table with pagination. i used axios to fetch employee data and job summay from the backend.
+-  Created a Process Page (pages/process) that uses the Employees Component and display the table of employees with pagination and the job summary.
+-  i added some styles to enhance the user interface.
+## Testing 
+-i tested the connetion between the backend and frontend.
+## App
+- home page:![image](https://github.com/omar-elaqqad/Full-Stack-Internship-Home-Assignment/assets/80116765/b2476db3-8a78-4410-bf71-463aea3d5cea)
+- Upload Page : ![image](https://github.com/omar-elaqqad/Full-Stack-Internship-Home-Assignment/assets/80116765/e5a4cf26-36b0-4117-8f7e-20997e10bb80)
+- Process Page :
+
+
+
+
