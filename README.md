@@ -74,13 +74,18 @@ Respect the following design flow:
 - Created an Employees Component (Employees.js) to display employee data and average salary per job title in a table with pagination. i used axios to fetch employee data and job summay from the backend.
 -  Created a Process Page (pages/process) that uses the Employees Component and display the table of employees with pagination and the job summary.
 -  i added some styles to enhance the user interface.
-## Testing 
+## Testing
 -i tested the connetion between the backend and frontend.
-## App
-- home page:![image](https://github.com/omar-elaqqad/Full-Stack-Internship-Home-Assignment/assets/80116765/b2476db3-8a78-4410-bf71-463aea3d5cea)
-- Upload Page : ![image](https://github.com/omar-elaqqad/Full-Stack-Internship-Home-Assignment/assets/80116765/e5a4cf26-36b0-4117-8f7e-20997e10bb80)
-- Process Page :
-
+## instructions to run the project
+-  run the Backend (Spring Boot) by navigating to the BackendApplication.java.
+-  The backend will run on "http://localhost:9093".
+-  nagivate to the frontend folder and run the frontend with the command 'npm run dev'
+-  The frontend will run on "http://localhost:3000"
+-  Access "http://localhost:3000/upload" to go to the file upload page.
+-  Upload the CSV file avaible on `static/employees.csv` using the "Upload" button.
+-  after a  successful upload an alert will be displayed.
+-  Click on the "Process" button to navigate to the process page.
+-  The process page (http://localhost:3000/process) will show the employee data table and job summary table.
 
 
 
